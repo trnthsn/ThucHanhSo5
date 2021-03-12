@@ -13,7 +13,7 @@ void printAns(int a[], int n)
     cout << endl;
 }
 
-void datBang0(int a[], int n, int vt)
+void datBang0(int a[], int n, int vt) // đặt các kí tự sau số 1 bằng số 0
 {
     for (int i = vt; i < n; i++)
     {
@@ -28,13 +28,13 @@ void generateBit(int a[], int n)
     while (i > 0)
     {
         if (a[i] == 1)
-            i--;
+            i--; // duyệt từ cuối dãy
         if (a[i] == 0)
         {
             a[i] = 1;
-            datBang0(a, n, i + 1);
+            datBang0(a, n, i + 1); // đặt đặt số 0 bằng 1 và các số sau số đó bằng 0
             printAns(a, n);
-            i = n - 1;
+            i = n - 1; // reset giá trị để duyệt về cuối dãy
         }
     }
 }
