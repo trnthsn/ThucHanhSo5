@@ -6,6 +6,7 @@ vector <string> answer;
 int m, n;
 int maze[100][100];
 bool ok[100][100];
+string s;
 
 void getMaze(int maze[100][100], int m, int n)
 {
@@ -61,21 +62,39 @@ void test (int i, int j, string s)
         ok[i][j] = false;
     }
 }
+void setMap(int maze[100][100])
+{
+    maze[m - 1][n - 1] = 2;
+    int i = 0, j = 0, count = 0;
+    while(true)
+    {
+        if(count >= s.size())
+            return;
+        else
+        {
+            maze[i][j] = 2;
+            if(s[count] == 'D') i += 1;
+            if(s[count] == 'U') i -= 1;
+            if(s[count] == 'R') j += 1;
+            if(s[count] == 'L') j -= 1;
+            count ++;
+        }
+    }
+}
 
 void solve()
 {
     answer.clear();
     getMaze(maze, m, n);
     test (0, 0, "");
+    s = answer[0];
     if (answer.size() == 0)
         cout << -1;
     else
-        for (int i = 0; i < answer.size(); i++)
-        {
-            cout << answer[i];
-        }
-    // printMaze(maze, m, n);
+        setMap(maze);
+    printMaze(maze, m, n);
 }
+
 
 int main()
 {
